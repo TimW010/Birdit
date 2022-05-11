@@ -1,6 +1,6 @@
-import { useSafeAreaInsets } from "react-native-safe-area-context";
-import { Animated, View, Image, Text, Dimensions } from "react-native-web";
 import React, { useEffect, useRef } from "react";
+import { Animated, Dimensions, Image, Text, View } from "react-native";
+import { useSafeAreaInsets } from "react-native-safe-area-context";
 import Logo from "../assets/logo.png";
 const BGColor = "#ffffff";
 export default function SplashScreen() {
@@ -26,8 +26,8 @@ export default function SplashScreen() {
         }),
         Animated.timing(moveLogo, {
           toValue: {
-            x: -Dimensions.get("window").width / 2 - 35,
-            y: -Dimensions.get("window").height / 2 - 5,
+            x: -Dimensions.get("window").width / 2 + 65,
+            y: Dimensions.get("window").height / 2 - 45,
           },
           useNativeDriver: true,
         }),
@@ -50,12 +50,9 @@ export default function SplashScreen() {
     >
       <Animated.View
         style={{
-          position: "absolute",
-          top: 0,
-          bottom: 0,
-          left: 0,
-          right: 0,
+          flex: 1,
           backgroundColor: BGColor,
+          zIndex: 1,
           transform: [{ translateY: startAnimation }],
         }}
       >
