@@ -1,22 +1,25 @@
-import { StatusBar } from "expo-status-bar";
-import React from "react";
-import { StyleSheet, Text, View } from "react-native";
-import { SafeAreaProvider } from "react-native-safe-area-context";
-import SplashScreen from "./Components/SplashScreen";
+import React, { useState, useEffect } from "react";
+import { View, StyleSheet } from "react-native";
+import HomeScreen from "./app/screens/HomeScreen";
+import WelcomeScreen from "./app/screens/WelcomeScreen";
 
 export default function App() {
+  const [loading, setLoading] = useState(false);
+  useEffect(() => {
+    setLoading(true);
+    setTimeout(() => {
+      setLoading(false);
+    }, 2000);
+  }, []);
   return (
-    <SafeAreaProvider>
-      <SplashScreen></SplashScreen>
-    </SafeAreaProvider>
+    <View style={styles.container}>
+      {loading ? <WelcomeScreen loading={loading} /> : <HomeScreen />}
+    </View>
   );
 }
 
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: "#fff",
-    alignItems: "center",
-    justifyContent: "center",
   },
 });
